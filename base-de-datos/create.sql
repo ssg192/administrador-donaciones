@@ -44,6 +44,7 @@ CREATE TABLE cr02_persona (
     tx_primer_apellido VARCHAR(255) NOT NULL,
     tx_segundo_apellido VARCHAR(255) NOT NULL,
     tx_correo VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     CONSTRAINT pk_cr02_persona PRIMARY KEY (id_persona)
 );
 
