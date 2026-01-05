@@ -1,4 +1,4 @@
-package mx.edu.ceneval.controlaplicacionesdsca.util.paginacion;
+package com.escom.administradordonaciones.donacion.util.paginacion;
 
 
 

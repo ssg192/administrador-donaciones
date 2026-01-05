@@ -1,4 +1,4 @@
-package mx.ipn.controlescolar.util.error;
+package com.escom.administradordonaciones.donacion.util.error;
 
 public interface ErrorCode {
     String getName();

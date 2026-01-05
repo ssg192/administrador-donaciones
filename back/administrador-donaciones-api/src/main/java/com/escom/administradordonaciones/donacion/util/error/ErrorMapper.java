@@ -1,8 +1,12 @@
-package mx.ipn.controlescolar.util.error;
+package com.escom.administradordonaciones.donacion.util.error;
 
+import com.google.gson.Gson;
 import jakarta.validation.ConstraintViolation;
 import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.Response;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 @Slf4j
 public class ErrorMapper {
@@ -59,4 +63,34 @@ public class ErrorMapper {
         var queryParams = uriInfo.getQueryParameters();
         log.error("- [{}] {} PATH_PARAMS: {} QUERY_PARAMS: {} -", method, path, pathParams, queryParams);
     }
+
+    /**
+     * De vuelve una respuesta de error con base en el codigo del error
+     *
+     * @param error Codigo del error de tipo {@link ErrorCodeEnum}
+     * @return Un objeto de la clase de tipo {@link ErrorResponseDTO}
+     */
+    public static ErrorResponseDTO errorCodeToErrorResponse(ErrorCodeEnum error) {
+        return ErrorResponseDTO.builder()
+                .details(List.of(ErrorDetailDTO.builder()
+                                .code(error.getName())
+                                .message(error.getDetail())
+                                .build()))
+                .build();
+    }
+
+    /**
+     * Devuelve una respuesta de error con el estado http indicado con base en un codigo de error
+     *
+     * @param code   código que indica la regla violada
+     * @param status estado http a utilizar en la respuesta
+     * @return respuesta con el codigo status que se indico y el error construido
+     */
+    public static Response errorCodeToResponse(ErrorCodeEnum code, Response.Status status) {
+        return Response.status(status)
+                .entity(errorCodeToErrorResponse(code))
+                .build();
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package mx.edu.ceneval.controlaplicacionesdsca.util;
+package com.escom.administradordonaciones.donacion.util;
 
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerResponseContext;

@@ -1,4 +1,4 @@
-package mx.ipn.controlescolar.util.error;
+package com.escom.administradordonaciones.donacion.util.error;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Produces;
