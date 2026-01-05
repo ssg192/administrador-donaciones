@@ -23,3 +23,7 @@ values
 (4, 'Apoyo social', true),
 (5, 'Emergencias', true);
 
+INSERT INTO cr03_rol
+(id_rol,tx_nombre)
+VALUES(1,'Administrador'),
+(2,'Necesitador');
