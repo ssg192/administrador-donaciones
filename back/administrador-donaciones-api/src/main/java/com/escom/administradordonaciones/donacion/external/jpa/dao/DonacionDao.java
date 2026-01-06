@@ -101,12 +101,12 @@ public class DonacionDao implements DonacionRepository {
             where cr01.id_donacion = :idDonacion
             """;
     private static final String QUERY_FIND_EXISTS_DONACION_INACTIVA = """
-            select exists(select 1 from cr01_donacion cr01
+            select exists(select 1 from cr01_donaciones cr01
             where cr01.fk_id_estado = 2 and  cr01.id_donacion = :idDonacion)
             """;
 
     private static final String QUERY_FIND_EXISTS_DONACION_ACTIVA = """
-            select exists(select 1 from cr01_donacion cr01
+            select exists(select 1 from cr01_donaciones cr01
             where cr01.fk_id_estado = 1 and cr01.id_donacion = :idDonacion)
             """;
     private static final String PARAM_ID_PERSONA = "idPersona";
