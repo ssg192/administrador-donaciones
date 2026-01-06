@@ -1,59 +1,53 @@
-// URL de tu backend Quarkus (ajusta el puerto si es necesario)
-const API_URL = 'http://localhost:8080'; 
+import { MENU_BY_ROLE } from './roles.js';
 
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Evita que la página se recargue
+    event.preventDefault(); 
 
-    // 1. Capturar datos del formulario
-    const email = document.getElementById('email').value;
+    const correoElectronico = document.getElementById('correoElectronico').value;
     const password = document.getElementById('password').value;
     const errorDiv = document.getElementById('errorMessage');
     const btnSubmit = document.getElementById('btnSubmit');
 
-    // Limpiar mensajes anteriores
     errorDiv.style.display = 'none';
     errorDiv.innerText = '';
     
-    // Deshabilitar botón para evitar doble clic
     btnSubmit.disabled = true;
     btnSubmit.innerText = 'Verificando...';
 
     try {
-        // 2. Enviar petición al Backend (Quarkus)
-        const response = await fetch(`${API_URL}/auth/login`, {
+        const response = await fetch(`http://localhost:8080/donacion/acceso`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
+                correoElectronico: correoElectronico,
                 password: password
             })
         });
 
-        // 3. Manejar la respuesta
         if (response.ok) {
             const data = await response.json();
-            
-            // ASUMIENDO que Quarkus devuelve algo como: { "token": "abc123xyz...", "userId": 1 }
-            // Guardamos el token para usarlo después
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('userEmail', email);
+           localStorage.setItem('idPersona', data.idPersona);
+           localStorage.setItem('idRol', data.idRol);
+           const menu = MENU_BY_ROLE[data.idRol];
 
-            // Redirigir al dashboard de "Necesitados"
-            window.location.href = 'dashboard-necesitados.html'; 
+         if (!menu || menu.length === 0) {
+            throw new Error('Rol no autorizado');
+        }
+
+        window.location.href = menu[0].path;
+
         } else {
-            // Si el backend devuelve 401 (No autorizado) o 400
             const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || 'Credenciales incorrectas');
+         const mensaje = errorData?.details?.[0]?.message ||errorData?.message || 'Credenciales incorrectas';
+         throw new Error(mensaje)
         }
 
     } catch (error) {
-        // Mostrar error en pantalla
         errorDiv.innerText = error.message;
         errorDiv.style.display = 'block';
     } finally {
-        // Reactivar el botón
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Ingresar';
     }
