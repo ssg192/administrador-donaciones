@@ -127,6 +127,6 @@ public class DonacionController {
     @PATCH
     @Path("{idDonacion}/volver-activa")
     public Boolean volverActiva(@PathParam("idDonacion")Integer idDonacion) {
-        return donacionService.updateDonacionInEstadoInactiva(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
+        return donacionService.updateDonacionInEstadoActiva(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
     }
 }
