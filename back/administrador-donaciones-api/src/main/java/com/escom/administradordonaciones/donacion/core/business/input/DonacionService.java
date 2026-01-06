@@ -29,4 +29,5 @@ public interface DonacionService {
     Either<ErrorCodeEnum,Boolean>deleteDonacion(Integer idDonacion);
     Either<ErrorCodeEnum,Boolean>updateDonacionInEstadoInactiva(Integer idDonacion);
     Either<ErrorCodeEnum,Boolean>updateDonacionInEstadoActiva(Integer idDonacion);
+    Either<ErrorCodeEnum,Donacion>getDonacionById(Integer idDonacion);
 }

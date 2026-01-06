@@ -252,6 +252,12 @@ public class DonacionBs implements DonacionService {
         return Either.right(true);
     }
 
+    @Override
+    public Either<ErrorCodeEnum, Donacion> getDonacionById(Integer idDonacion) {
+        var searchDonacion =  donacionRepository.findByIdDonacion(idDonacion);
+        return searchDonacion.<Either<ErrorCodeEnum, Donacion>>map(Either::right).orElseGet(() -> Either.left(ErrorCodeEnum.CE_NOT_FOUND));
+    }
+
 
     private List<Donacion> asignacionEstadoDonacion(List<Donacion> donaciones) {
         donaciones.forEach(donacion-> {

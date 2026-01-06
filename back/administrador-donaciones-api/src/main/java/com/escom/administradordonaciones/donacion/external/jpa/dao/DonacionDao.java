@@ -109,7 +109,6 @@ public class DonacionDao implements DonacionRepository {
             select exists(select 1 from cr01_donacion cr01
             where cr01.fk_id_estado = 1 and cr01.id_donacion = :idDonacion)
             """;
-
     private static final String PARAM_ID_PERSONA = "idPersona";
     private static final String PARAM_CORREO = "correoElectronico";
     private static final String PARAM_ID_DONACION="idDonacion";
@@ -310,5 +309,4 @@ public class DonacionDao implements DonacionRepository {
         return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_ACTIVA)
                 .getSingleResult();
     }
-
 }

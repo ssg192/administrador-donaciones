@@ -129,4 +129,10 @@ public class DonacionController {
     public Boolean volverActiva(@PathParam("idDonacion")Integer idDonacion) {
         return donacionService.updateDonacionInEstadoActiva(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
     }
+
+    @GET
+    @Path("{idDonacion}")
+    public getDonacionDTO getDonacionById(@PathParam("idDonacion")Integer idDonacion) {
+        return donacionService.getDonacionById(idDonacion).map(getDonacionDTO::fromEntity).getOrElseThrow(ErrorCode::toBusinessException);
+    }
 }
