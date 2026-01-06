@@ -69,7 +69,7 @@ public class DonacionDao implements DonacionRepository {
             cr02.tx_nombre || ' ' || cr02.tx_primer_apellido || coalesce((' '||tx_segundo_apellido), ' ') as personal,
             cr02.tx_correo from cr02_persona cr02
             join cr04_persona_rol cr04 on cr04.fk_id_persona = cr02.id_persona\s
-            where cr04.fk_id_rol != 2 
+            where cr04.fk_id_rol != 1 
             """;
 
     private static final String QUERY_FIND_PERSONA_BY_ID = """
