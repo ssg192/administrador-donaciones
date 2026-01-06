@@ -12,7 +12,8 @@ public enum ErrorCodeEnum implements ErrorCode {
 
     // NEGOCIO (CE-RN-NXXX)
     CE_RNN001("Unicidad de elementos"),
-    CE_RNN002("Elementos mínimos necesarios");
+    CE_RNN002("Elementos mínimos necesarios"),
+    CE_RNN003("Usuario no encontrado");
     private final String detail;
 
     ErrorCodeEnum(String detail) {

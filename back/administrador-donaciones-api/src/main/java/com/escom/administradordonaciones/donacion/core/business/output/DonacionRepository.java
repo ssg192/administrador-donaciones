@@ -1,5 +1,6 @@
 package com.escom.administradordonaciones.donacion.core.business.output;
 
+import com.escom.administradordonaciones.donacion.core.entity.Catalogo;
 import com.escom.administradordonaciones.donacion.core.entity.Donacion;
 import com.escom.administradordonaciones.donacion.core.entity.Incidencia;
 import com.escom.administradordonaciones.donacion.core.entity.Persona;
@@ -19,4 +20,11 @@ public interface DonacionRepository {
     void deleteRol(Integer idPersona);
     void saveIncidencia(Incidencia incidencia);
     void updateIncidenciaEstado(Integer idIncidencia);
+    boolean existUserByCorreoElectronico(String correoElectronico);
+    Optional<Persona>findInformacionUserByCorreo(String correoElectronico);
+    List<Catalogo>findTiposDonacion();
+    List<Catalogo>findTipoIncidencia();
+    void saveDonacion(Donacion donacion);
+    Optional<Donacion>findByIdDonacion(Integer idDonacion);
+    void deleteDonacion(Integer idDonacion);
 }

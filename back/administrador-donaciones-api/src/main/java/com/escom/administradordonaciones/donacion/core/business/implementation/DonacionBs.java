@@ -2,6 +2,7 @@ package com.escom.administradordonaciones.donacion.core.business.implementation;
 
 import com.escom.administradordonaciones.donacion.core.business.input.DonacionService;
 import com.escom.administradordonaciones.donacion.core.business.output.DonacionRepository;
+import com.escom.administradordonaciones.donacion.core.entity.Catalogo;
 import com.escom.administradordonaciones.donacion.core.entity.Donacion;
 import com.escom.administradordonaciones.donacion.core.entity.Incidencia;
 import com.escom.administradordonaciones.donacion.core.entity.Persona;
@@ -35,18 +36,19 @@ public class DonacionBs implements DonacionService {
 
     @Override
     public List<Donacion> listAllDonaciones(Integer idRol) {
-         var searchDonaciones = donacionRepository.findAllDonaciones();
-        searchDonaciones.forEach(donacion -> {
-            if(donacion.getIdEstado().equals(EstadoDonacionEnum.ACTIVO.getId()) && idRol.equals(RolesEnum.ADMIN.getId())) {
+        var donaciones = donacionRepository.findAllDonaciones();
+        donaciones.forEach(donacion -> {
+            if (RolesEnum.ADMIN.getId().equals(idRol)) {
                 donacion.setEditar(Boolean.TRUE);
                 donacion.setEliminar(Boolean.TRUE);
-            }else{
+            } else {
                 donacion.setEditar(Boolean.FALSE);
                 donacion.setEliminar(Boolean.FALSE);
             }
         });
-        return searchDonaciones;
+        return donaciones;
     }
+
 
     @Override
     public List<Incidencia> listAllIncidenciasInDonacion() {
@@ -161,6 +163,69 @@ public class DonacionBs implements DonacionService {
         donacionRepository.updateIncidenciaEstado(idIncidencia);
         return Either.right(true);
     }
+
+    @Override
+    public Either<ErrorCodeEnum, Persona> getAccessPersonaByCorreoElectronicoAndPassword(String correoElectronico, String password) {
+        var searchPersona = donacionRepository.findInformacionUserByCorreo(correoElectronico);
+        if(searchPersona.isEmpty()) {
+            return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
+        }
+        if(isPasswordValid(password,searchPersona.get().getPassword())){
+            return Either.right(searchPersona.get());
+        }
+        return Either.left(ErrorCodeEnum.CE_RNN003);
+    }
+
+    @Override
+    public List<Catalogo> listTiposDonacion() {
+        return donacionRepository.findTiposDonacion();
+    }
+
+    @Override
+    public List<Catalogo> listTipoIncidencia() {
+        return donacionRepository.findTipoIncidencia();
+    }
+
+    @Override
+    @Transactional
+    public Either<ErrorCodeEnum, Boolean> createDonacion(Donacion donacion) {
+        donacionRepository.saveDonacion(Donacion.builder().idPersona(donacion.getIdPersona())
+                .idTipoDonacion(donacion.getIdTipoDonacion()).idEstado(EstadoDonacionEnum.ACTIVO.getId())
+                .descripcion(donacion.getDescripcion()).latitud(donacion.getLatitud())
+                .longitud(donacion.getLongitud()).profundidad(donacion.getProfundidad()).build());
+        return Either.right(true);
+    }
+
+    @Override
+    @Transactional
+    public Either<ErrorCodeEnum, Boolean> updateDonacion(Integer idDonacion,Donacion donacion) {
+       var searchDonacion = donacionRepository.findByIdDonacion(idDonacion);
+       if(searchDonacion.isEmpty()) {
+           return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
+       }
+       searchDonacion.get().setIdDonacion(searchDonacion.get().getIdDonacion());
+       searchDonacion.get().setIdTipoDonacion(donacion.getIdTipoDonacion());
+       searchDonacion.get().setDescripcion(donacion.getDescripcion());
+       searchDonacion.get().setLatitud(donacion.getLatitud());
+       searchDonacion.get().setLongitud(donacion.getLongitud());
+       searchDonacion.get().setProfundidad(donacion.getProfundidad());
+       searchDonacion.get().setIdPersona(searchDonacion.get().getIdPersona());
+       searchDonacion.get().setIdEstado(searchDonacion.get().getIdEstado());
+       donacionRepository.saveDonacion(searchDonacion.get());
+       return Either.right(true);
+    }
+
+    @Override
+    @Transactional
+    public Either<ErrorCodeEnum, Boolean> deleteDonacion(Integer idDonacion) {
+        var searchDonacion = donacionRepository.findByIdDonacion(idDonacion);
+        if(searchDonacion.isEmpty()) {
+            return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
+        }
+        donacionRepository.deleteDonacion(idDonacion);
+        return Either.right(true);
+    }
+
 
     private List<Donacion> asignacionEstadoDonacion(List<Donacion> donaciones) {
         donaciones.forEach(donacion-> {

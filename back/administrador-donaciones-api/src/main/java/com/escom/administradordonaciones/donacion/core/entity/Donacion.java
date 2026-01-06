@@ -18,7 +18,8 @@ public class Donacion {
     private BigDecimal latitud;
     private BigDecimal longitud;
     private BigDecimal profundidad;
-
+private Integer idTipoDonacion;
+private Integer idPersona;
     //acciones
     private Boolean editar;
     private Boolean eliminar;

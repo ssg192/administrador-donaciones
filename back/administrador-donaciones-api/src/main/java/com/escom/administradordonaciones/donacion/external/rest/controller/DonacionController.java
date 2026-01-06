@@ -8,7 +8,6 @@ import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -28,19 +27,19 @@ public class DonacionController {
 
     @GET
     @Path("{idPersona}/donaciones")
-    public Response listDonacionesByIdPersona(@PathParam("idPersona")Integer idPersona) {
-        return Response.ok(donacionService.listDonacionesByIdPersona(idPersona).stream().map(DonacionesDTO::fromEntity).toList()).build();
+    public List<DonacionesDTO> listDonacionesByIdPersona(@PathParam("idPersona")Integer idPersona) {
+        return donacionService.listDonacionesByIdPersona(idPersona).stream().map(DonacionesDTO::fromEntity).toList();
     }
 
     @GET
     @Path("/donaciones")
-    public Response listDonacionesAllDonaciones(@Parameter(description = "identificador del rol",required = true) @QueryParam("idRol")Integer idRol) {
-        return Response.ok(donacionService.listAllDonaciones(idRol).stream().map(AllDonacionesDTO::fromEntity).toList()).build();
+    public List<AllDonacionesDTO> listDonacionesAllDonaciones(@Parameter(description = "identificador del rol") @QueryParam("idRol")Integer idRol) {
+        return donacionService.listAllDonaciones(idRol).stream().map(AllDonacionesDTO::fromEntity).toList();
     }
     @GET
     @Path("/incidencias")
-    public Response listIncidenciasAllInDonaciones() {
-        return Response.ok(donacionService.listAllIncidenciasInDonacion().stream().map(IncidenciasDTO::fromEntity).toList()).build();
+    public List<IncidenciasDTO> listIncidenciasAllInDonaciones() {
+        return donacionService.listAllIncidenciasInDonacion().stream().map(IncidenciasDTO::fromEntity).toList();
     }
 
     @GET
@@ -85,4 +84,37 @@ public class DonacionController {
         return donacionService.updateIncidenciaInEstadoResueltaById(idIncidencia).getOrElseThrow(ErrorCode::toBusinessException);
     }
 
+    @POST
+    @Path("{correoElectronico}/{password}/acceso")
+    public PersonaAcessoDTO getCredencialesByCorreoAndPassword(@PathParam("correoElectronico") String correoElectronico, @PathParam("password") String password) {
+        return donacionService.getAccessPersonaByCorreoElectronicoAndPassword(correoElectronico,password).map(PersonaAcessoDTO::fromEntity).getOrElseThrow(ErrorCode::toBusinessException);
+    }
+
+    @GET
+    @Path("catalogo/tipo-donacion")
+    public List<CatalogoDTO> listCatalogoTipoDonacion() {
+        return donacionService.listTiposDonacion().stream().map(CatalogoDTO::fromEntity).toList();
+    }
+
+    @GET
+    @Path("catalogo/tipo-incidencia")
+    public List<CatalogoDTO> listCatalogoTipoIncidencia() {
+        return donacionService.listTipoIncidencia().stream().map(CatalogoDTO::fromEntity).toList();
+    }
+
+    @POST
+    public Boolean createDonacion(@Valid DonacionDTO donacionDTO) {
+        return donacionService.createDonacion(donacionDTO.toEntity()).getOrElseThrow(ErrorCode::toBusinessException);
+    }
+    @PUT
+    @Path("{idDonacion}/editar")
+    public Boolean updateDonacion(@PathParam("idDonacion")Integer idDonacion,@Valid UpdateDonacionDTO updateDonacionDTO) {
+        return donacionService.updateDonacion(idDonacion,updateDonacionDTO.toEntity()).getOrElseThrow(ErrorCode::toBusinessException);
+    }
+
+    @DELETE
+    @Path("{idDonacion}/eliminar")
+    public Boolean deleteDonacion(@PathParam("idDonacion")Integer idDonacion) {
+        return donacionService.deleteDonacion(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
+    }
 }
