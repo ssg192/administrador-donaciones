@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - DonacionesApp</title>
+    
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/perfil-editar.css">
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    <div class="container">
+        <h2>Editar Mis Datos</h2>
+        <p>Actualiza tu información personal.</p>
+
+        <form id="editarPerfilForm">
+            
+            <div class="section-title">Información Personal</div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group half">
+                    <label for="primerApellido">Primer Apellido</label>
+                    <input type="text" id="primerApellido" name="primerApellido" required>
+                </div>
+                <div class="form-group half">
+                    <label for="segundoApellido">Segundo Apellido</label>
+                    <input type="text" id="segundoApellido" name="segundoApellido">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="correoElectronico">Correo Electrónico</label>
+                <input type="email" id="correoElectronico" name="correoElectronico" required>
+            </div>
+
+            <hr>
+            <div class="section-title">Seguridad (Opcional)</div>
+            <p class="small-text">Llena estos campos solo si deseas cambiar tu contraseña.</p>
+
+            <div class="form-group">
+                <label for="passwordNueva">Nueva Contraseña</label>
+                <input type="password" id="passwordNueva" name="passwordNueva" placeholder="Dejar en blanco para mantener la actual">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPasswordNueva">Confirmar Nueva Contraseña</label>
+                <input type="password" id="confirmPasswordNueva" placeholder="Repite la nueva contraseña">
+            </div>
+
+            <div class="confirm-box">
+                <label for="passwordActual">Ingresa tu contraseña actual para guardar cambios:</label>
+                <input type="password" id="passwordActual" name="passwordActual" required placeholder="Contraseña actual">
+            </div>
+
+            <div id="feedbackMessage" class="error-message" style="display: none;"></div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-cancel" onclick="window.history.back()">Cancelar</button>
+                <button type="submit" id="btnSubmit">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+
+    <script type="module" src="js/menu.js"></script>
+    <script src="js/perfil-editar.js"></script>
+</body>
+</html>

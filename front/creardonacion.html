@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Punto de Donación</title>
+    
+    <link rel="stylesheet" href="css/creardonaciones.css">
+    <link rel="stylesheet" href="css/menu.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    
+</head>
+<body>
+    <div id="menu"></div>
+
+    <div class="container">
+        <h2>Registrar Nuevo Centro/Donación</h2>
+        <p>Completa la información y ubica el lugar exacto en el mapa.</p>
+
+        <form id="donacionForm">
+            
+            <div class="form-group">
+                <label for="idTipoDonacion">Tipo de Donación</label>
+                <select id="idTipoDonacion" name="idTipoDonacion" required>
+                    <option value="">Cargando opciones...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describe qué se recibe o qué ofrece este lugar..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Ubicación Exacta (Arrastra el marcador)</label>
+                <div id="mapPicker"></div>
+                <small id="coords-text">Coordenadas seleccionadas: - , -</small>
+            </div>
+
+            <input type="hidden" id="latitud">
+            <input type="hidden" id="longitud">
+            
+            <div id="feedbackMessage" class="error-message" style="display: none;"></div>
+
+            <button type="submit" id="btnSubmit">Registrar Lugar</button>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="js/creardonacion.js"></script>
+    <script type="module" src="js/menu.js"></script>
+</body>
+</html>

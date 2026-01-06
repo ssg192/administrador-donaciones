@@ -1,0 +1,141 @@
+/* --- Base y Layout --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#menu {
+    width: 100%;
+    z-index: 100;
+}
+
+.main-container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* --- Encabezado --- */
+.header-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header-section h2 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.header-section p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+/* --- Tarjeta de Tabla --- */
+.table-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow-x: auto; /* Scroll horizontal en móviles */
+    padding: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+thead {
+    background-color: #34495e; /* Un tono gris oscuro/azulado profesional */
+    color: white;
+}
+
+thead th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #ecf0f1;
+    color: #555;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* --- Etiquetas de Estado (Badges) --- */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* Colores dinámicos según el estado (Se pueden ajustar en JS) */
+.status-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.status-resuelta {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* --- Botones de Acción --- */
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.btn-resolve {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.loading-text {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #999;
+}

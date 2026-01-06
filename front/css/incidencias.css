@@ -1,0 +1,129 @@
+/* --- Configuración base para centrado (Flexbox) --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Menú arriba, contenido abajo */
+    align-items: center;    /* Centrado horizontal */
+    min-height: 100vh;
+}
+
+#menu {
+    width: 100%;
+    z-index: 100;
+}
+
+/* --- Contenedor Principal --- */
+.container {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 500px; /* Un poco más angosto para formularios simples */
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin: auto;     /* Centrado vertical automático */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Títulos y Textos --- */
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.container > p {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* --- Formulario --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: #e74c3c; /* Usamos rojo suave para indicar "incidencia" */
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* --- Botón --- */
+button#btnSubmit {
+    width: 100%;
+    padding: 14px;
+    background-color: #e74c3c; /* Rojo para acción de reporte */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button#btnSubmit:hover {
+    background-color: #c0392b;
+}
+
+button#btnSubmit:disabled {
+    background-color: #e6b0aa;
+    cursor: not-allowed;
+}
+
+/* --- Feedback Mensajes --- */
+.error-message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    display: none; /* Oculto por defecto */
+}
+
+/* Estilo para error */
+.error-style {
+    background-color: #fff5f5;
+    color: #c0392b;
+    border: 1px solid #feb2b2;
+}
+
+/* Estilo para éxito */
+.success-style {
+    background-color: #f0fff4;
+    color: #276749;
+    border: 1px solid #9ae6b4;
+}

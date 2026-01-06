@@ -1,0 +1,138 @@
+/* --- Configuración Base (Consistente con tus otras vistas) --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9; /* El mismo gris suave */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrado Horizontal */
+    align-items: center;     /* Centrado Vertical */
+    min-height: 100vh;
+}
+
+/* --- Tarjeta Principal --- */
+.landing-card {
+    background-color: white;
+    width: 50%;
+    max-width: 500px; /* Tamaño controlado */
+    padding: 2.5rem;
+    border-radius: 20px; /* Bordes más redondeados para bienvenida */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* Sombra más elegante */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* --- Imagen y Títulos --- */
+.hero-image {
+    width: 50%;
+    height: 200px;
+    object-fit: cover; /* Recorta la imagen para que llene el espacio */
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.main-title {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin: 0 0 10px 0;
+    font-weight: 800; /* Letra gruesa para impacto */
+    letter-spacing: -1px;
+}
+
+.slogan {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    line-height: 1.5;
+}
+
+/* --- Botones --- */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo base del botón grande */
+.btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Contenido dentro del botón */
+.icon-wrapper {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    width: 40px;
+    text-align: center;
+}
+
+.text-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.btn-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* --- Variantes de Color --- */
+
+/* Botón Explorar (Principal - Verde/Azul Turquesa o el color de la marca) */
+.btn-explore {
+    background-color: #007bff; /* Azul consistente */
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-explore:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Pequeña elevación */
+}
+
+/* Botón Login (Secundario - Borde o Gris suave) */
+.btn-login {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 2px solid #e0e0e0;
+}
+
+.btn-login:hover {
+    background-color: #e2e6ea;
+    border-color: #ccc;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+.footer-note {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #aaa;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    .landing-card {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+}

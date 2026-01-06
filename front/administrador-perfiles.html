@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Usuarios</title>
+    
+    <link rel="stylesheet" href="css/menu.css"> <link rel="stylesheet" href="css/administrador-perfiles.css">
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    <div class="main-container">
+        <div class="header-section">
+            <h2>Gestión de Usuarios</h2>
+            <p>Lista completa de perfiles registrados en la plataforma.</p>
+        </div>
+
+        <div class="table-container">
+            <table id="usuariosTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Completo</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaBody">
+                    <tr>
+                        <td colspan="3" class="loading-text">Cargando usuarios...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="js/menu.js"></script> <script src="js/administrador-perfiles.js"></script>
+</body>
+</html>

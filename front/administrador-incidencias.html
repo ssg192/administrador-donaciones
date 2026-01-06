@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Incidencias</title>
+    
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/administrador-incidencias.css">
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    <div class="main-container">
+        <div class="header-section">
+            <h2>Panel de Incidencias</h2>
+            <p>Gestiona los reportes y problemas de la plataforma.</p>
+        </div>
+
+        <div class="table-card">
+            <table id="incidenciasTable">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">ID</th>
+                        <th style="width: 150px;">Tipo</th>
+                        <th>Descripción del Problema</th>
+                        <th style="width: 100px;">Estado</th>
+                        <th style="width: 180px;" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaBody">
+                    <tr>
+                        <td colspan="5" class="loading-text">Cargando incidencias...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="js/menu.js"></script>
+    <script src="js/administrador-incidencias.js"></script>
+</body>
+</html>

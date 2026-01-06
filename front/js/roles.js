@@ -6,8 +6,8 @@
 export const MENU_BY_ROLE = Object.freeze({
     [ROLES.ADMIN]: [
         {
-            label: 'Dashboard',
-            path: 'dashboard-admin.html'
+            label: 'Administrar Perfiles',
+            path: 'administrador-perfiles.html'
         },
         {
             label: 'Donaciones',
@@ -16,6 +16,10 @@ export const MENU_BY_ROLE = Object.freeze({
         {
             label: 'Mapa',
             path: 'mapa.html'
+        },
+        {
+            label: 'Incidencias',
+            path: 'administrador-incidencias.html'
         }
     ],
 
@@ -26,11 +30,24 @@ export const MENU_BY_ROLE = Object.freeze({
         },
         {
             label: 'Perfil',
-            path: 'perfil-setup.html'
+            path: 'perfil.html'
         },
         {
             label: 'Mapa',
             path: 'mapa.html'
+        },
+        {
+            label: 'Solicitar donación',
+            path: 'creardonacion.html'
+        },
+        {
+            label: 'Incidencias',
+            path: 'incidencias.html'
+        },
+        {
+            label: 'Editar perfil',
+            path: 'perfil-editar.html'
         }
+
     ]
 });

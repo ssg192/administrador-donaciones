@@ -1,0 +1,114 @@
+/* Configuración base similar a tus otras vistas */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.main-container {
+    max-width: 1000px; /* Un poco más ancho para la tabla */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- Encabezado --- */
+.header-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header-section h2 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.header-section p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+/* --- Contenedor de la Tabla (Tarjeta) --- */
+.table-container {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow: hidden; /* Para recortar los bordes de la tabla */
+    padding: 0;
+}
+
+/* --- Estilos de la Tabla --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Para evitar que se aplaste mucho en móviles */
+}
+
+/* Cabecera de la tabla */
+thead {
+    background-color: #007bff; /* Azul corporativo */
+    color: white;
+}
+
+thead th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* Cuerpo de la tabla */
+tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+    vertical-align: middle;
+}
+
+/* Efecto Hover en las filas */
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Última fila sin borde */
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Botones y Acciones --- */
+.text-center {
+    text-align: center;
+}
+
+.btn-delete {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #cc0000;
+}
+
+/* Estado de carga o vacío */
+.loading-text {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-style: italic;
+}
+
+/* --- Responsive --- */
+/* Si la pantalla es muy chica, permitimos scroll horizontal en la tabla */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - DonacionesApp</title>
+    
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    <div class="main-container">
+        
+        <div class="profile-card">
+            <div class="profile-header">
+                <div id="avatarCircle" class="avatar">
+                    <span id="initials">--</span>
+                </div>
+                <h2 id="displayNombreCompleto">Cargando...</h2>
+                <p id="displayCorreo" class="email-subtext">...</p>
+            </div>
+
+            <hr>
+
+            <div class="profile-details">
+                <div class="detail-item">
+                    <span class="label">Nombre(s)</span>
+                    <span class="value" id="valNombre">-</span>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="detail-item">
+                        <span class="label">Primer Apellido</span>
+                        <span class="value" id="valApellido1">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Segundo Apellido</span>
+                        <span class="value" id="valApellido2">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <button id="btnIrEditar" class="btn-edit">Editar Información</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="js/menu.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+</html>

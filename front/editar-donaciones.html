@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Donación - Granito de Arena</title>
+    
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/editar-donaciones.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    <div class="container">
+        <h2>Editar Donación</h2>
+        <p>Modifica la información o actualiza la ubicación en el mapa.</p>
+
+        <form id="editarDonacionForm">
+            
+            <div class="form-group">
+                <label for="idTipoDonacion">Tipo de Donación</label>
+                <select id="idTipoDonacion" name="idTipoDonacion" required>
+                    <option value="">Cargando catálogo...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Ubicación (Arrastra el pin si necesitas cambiarla)</label>
+                <div id="mapPicker"></div>
+                <small id="coords-text">Coordenadas: - , -</small>
+            </div>
+
+            <input type="hidden" id="latitud">
+            <input type="hidden" id="longitud">
+            
+            <div id="feedbackMessage" class="error-message" style="display: none;"></div>
+
+            <div class="btn-group">
+                <button type="button" class="btn-cancel" onclick="window.history.back()">Cancelar</button>
+                <button type="submit" id="btnSubmit">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script type="module" src="js/menu.js"></script>
+    <script src="js/editar-donaciones.js"></script>
+</body>
+</html>
