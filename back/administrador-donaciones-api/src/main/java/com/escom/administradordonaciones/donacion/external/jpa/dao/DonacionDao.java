@@ -109,9 +109,16 @@ public class DonacionDao implements DonacionRepository {
             select exists(select 1 from cr01_donaciones cr01
             where cr01.fk_id_estado = 1 and cr01.id_donacion = :idDonacion)
             """;
+
+    private  static final String QUERY_FIND_EXISTS_INCIDENCIA_BY_ID = """
+            select exists(select 1 from cr05_incidencia cr05
+            where cr05.id_incidencia = :idIncidencia)
+            """;
+
     private static final String PARAM_ID_PERSONA = "idPersona";
     private static final String PARAM_CORREO = "correoElectronico";
     private static final String PARAM_ID_DONACION="idDonacion";
+    private static final String PARAM_ID_INCIDENCIA="idIncidencia";
 
     @Override
     @SuppressWarnings("unchecked")
@@ -310,5 +317,17 @@ public class DonacionDao implements DonacionRepository {
         return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_ACTIVA)
                 .setParameter(PARAM_ID_DONACION,idDonacion)
                 .getSingleResult();
+    }
+
+    @Override
+    public boolean existIncidenciaById(Integer idIncidencia) {
+        return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_INCIDENCIA_BY_ID)
+                .setParameter(PARAM_ID_INCIDENCIA,idIncidencia)
+                .getSingleResult();
+    }
+
+    @Override
+    public void deleteIncidencia(Integer idIncidencia) {
+        incidenciaJpaRepository.deleteById(idIncidencia);
     }
 }

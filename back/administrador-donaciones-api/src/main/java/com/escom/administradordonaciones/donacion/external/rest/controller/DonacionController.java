@@ -135,4 +135,10 @@ public class DonacionController {
     public getDonacionDTO getDonacionById(@PathParam("idDonacion")Integer idDonacion) {
         return donacionService.getDonacionById(idDonacion).map(getDonacionDTO::fromEntity).getOrElseThrow(ErrorCode::toBusinessException);
     }
+
+    @DELETE
+    @Path("{idIncidencia}/eliminar")
+    public Boolean deleteIncidenciaById(@PathParam("idIncidencia")Integer idIncidencia) {
+        return donacionService.deleteIncidenciaById(idIncidencia).getOrElseThrow(ErrorCode::toBusinessException);
+    }
 }

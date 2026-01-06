@@ -31,4 +31,6 @@ public interface DonacionRepository {
     void updateDonacionInEstadoActivaById(Integer idDonacion);
     boolean existDonacionInEstadoInactivoById(Integer idDonacion);
     boolean existDonacionInEstadoActivaById(Integer idDonacion);
+    boolean existIncidenciaById(Integer idIncidencia);
+    void deleteIncidencia(Integer idIncidencia);
 }
