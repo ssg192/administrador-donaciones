@@ -263,6 +263,7 @@ public class DonacionBs implements DonacionService {
         var searchIncidencia= donacionRepository.existIncidenciaById(idIncidencia);
         if(searchIncidencia) {
             donacionRepository.deleteIncidencia(idIncidencia);
+            return Either.right(true);
         }
         return Either.left(ErrorCodeEnum.CE_RNS002);
     }
