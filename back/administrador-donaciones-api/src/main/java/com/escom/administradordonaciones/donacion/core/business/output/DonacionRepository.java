@@ -27,4 +27,8 @@ public interface DonacionRepository {
     void saveDonacion(Donacion donacion);
     Optional<Donacion>findByIdDonacion(Integer idDonacion);
     void deleteDonacion(Integer idDonacion);
+    void updateDonacionInEstadoInactivoById(Integer idDonacion);
+    void updateDonacionInEstadoActivaById(Integer idDonacion);
+    boolean existDonacionInEstadoInactivoById(Integer idDonacion);
+    boolean existDonacionInEstadoActivaById(Integer idDonacion);
 }

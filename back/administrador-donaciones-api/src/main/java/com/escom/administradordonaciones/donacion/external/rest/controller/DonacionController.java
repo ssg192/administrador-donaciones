@@ -117,4 +117,16 @@ public class DonacionController {
     public Boolean deleteDonacion(@PathParam("idDonacion")Integer idDonacion) {
         return donacionService.deleteDonacion(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
     }
+
+    @PATCH
+    @Path("{idDonacion}/volver-inactiva")
+    public Boolean volverInactiva(@PathParam("idDonacion")Integer idDonacion) {
+        return donacionService.updateDonacionInEstadoInactiva(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
+    }
+
+    @PATCH
+    @Path("{idDonacion}/volver-activa")
+    public Boolean volverActiva(@PathParam("idDonacion")Integer idDonacion) {
+        return donacionService.updateDonacionInEstadoInactiva(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
+    }
 }

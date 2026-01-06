@@ -38,7 +38,7 @@ public class DonacionBs implements DonacionService {
     public List<Donacion> listAllDonaciones(Integer idRol) {
         var donaciones = donacionRepository.findAllDonaciones();
         donaciones.forEach(donacion -> {
-            if (RolesEnum.ADMIN.getId().equals(idRol)) {
+            if (RolesEnum.ADMIN.getId().equals(idRol) && EstadoDonacionEnum.ACTIVO.getId().equals(donacion.getIdEstado())){
                 donacion.setEditar(Boolean.TRUE);
                 donacion.setEliminar(Boolean.TRUE);
             } else {
@@ -226,15 +226,45 @@ public class DonacionBs implements DonacionService {
         return Either.right(true);
     }
 
+    @Override
+    public Either<ErrorCodeEnum, Boolean> updateDonacionInEstadoInactiva(Integer idDonacion) {
+        var searchDonacion = donacionRepository.findByIdDonacion(idDonacion);
+        if(searchDonacion.isEmpty()) {
+            return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
+        }
+        if(donacionRepository.existDonacionInEstadoInactivoById(idDonacion)) {
+            return Either.left(ErrorCodeEnum.CE_RNS002);
+        }
+        donacionRepository.updateDonacionInEstadoInactivoById(idDonacion);
+        return Either.right(true);
+    }
+
+    @Override
+    public Either<ErrorCodeEnum, Boolean> updateDonacionInEstadoActiva(Integer idDonacion) {
+        var searchDonacion = donacionRepository.findByIdDonacion(idDonacion);
+        if(searchDonacion.isEmpty()) {
+            return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
+        }
+        if(donacionRepository.existDonacionInEstadoActivaById(idDonacion)) {
+            return Either.left(ErrorCodeEnum.CE_RNS002);
+        }
+        donacionRepository.updateDonacionInEstadoActivaById(idDonacion);
+        return Either.right(true);
+    }
+
 
     private List<Donacion> asignacionEstadoDonacion(List<Donacion> donaciones) {
         donaciones.forEach(donacion-> {
             if(donacion.getIdEstado().equals(EstadoDonacionEnum.ACTIVO.getId())) {
                 donacion.setEditar(Boolean.TRUE);
                 donacion.setEliminar(Boolean.TRUE);
+                donacion.setBajaPublicacion(Boolean.TRUE);
+                donacion.setSubirPublicacion(Boolean.FALSE);
             }else{
                 donacion.setEditar(Boolean.FALSE);
                 donacion.setEliminar(Boolean.FALSE);
+                donacion.setBajaPublicacion(Boolean.FALSE);
+                donacion.setSubirPublicacion(Boolean.TRUE);
             }
         });
         return donaciones;

@@ -100,6 +100,15 @@ public class DonacionDao implements DonacionRepository {
             from cr01_donaciones cr01
             where cr01.id_donacion = :idDonacion
             """;
+    private static final String QUERY_FIND_EXISTS_DONACION_INACTIVA = """
+            select exists(select 1 from cr01_donacion cr01
+            where cr01.fk_id_estado = 2 and  cr01.id_donacion = :idDonacion)
+            """;
+
+    private static final String QUERY_FIND_EXISTS_DONACION_ACTIVA = """
+            select exists(select 1 from cr01_donacion cr01
+            where cr01.fk_id_estado = 1 and cr01.id_donacion = :idDonacion)
+            """;
 
     private static final String PARAM_ID_PERSONA = "idPersona";
     private static final String PARAM_CORREO = "correoElectronico";
@@ -278,6 +287,28 @@ public class DonacionDao implements DonacionRepository {
     @Override
     public void deleteDonacion(Integer idDonacion) {
         donacionJpaRepository.deleteById(idDonacion);
+    }
+
+    @Override
+    public void updateDonacionInEstadoInactivoById(Integer idDonacion) {
+        donacionJpaRepository.updateDonacionInEstadoInactivoById(idDonacion);
+    }
+
+    @Override
+    public void updateDonacionInEstadoActivaById(Integer idDonacion) {
+        donacionJpaRepository.updateDonacionInEstadoActivaById(idDonacion);
+    }
+
+    @Override
+    public boolean existDonacionInEstadoInactivoById(Integer idDonacion) {
+        return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_INACTIVA)
+                .getSingleResult();
+    }
+
+    @Override
+    public boolean existDonacionInEstadoActivaById(Integer idDonacion) {
+        return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_ACTIVA)
+                .getSingleResult();
     }
 
 }

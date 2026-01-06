@@ -27,4 +27,6 @@ public interface DonacionService {
     Either<ErrorCodeEnum,Boolean>createDonacion(Donacion donacion);
     Either<ErrorCodeEnum,Boolean>updateDonacion(Integer idDonacion,Donacion donacion);
     Either<ErrorCodeEnum,Boolean>deleteDonacion(Integer idDonacion);
+    Either<ErrorCodeEnum,Boolean>updateDonacionInEstadoInactiva(Integer idDonacion);
+    Either<ErrorCodeEnum,Boolean>updateDonacionInEstadoActiva(Integer idDonacion);
 }

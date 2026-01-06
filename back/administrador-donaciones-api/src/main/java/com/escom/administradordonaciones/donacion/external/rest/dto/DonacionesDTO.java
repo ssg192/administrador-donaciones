@@ -22,6 +22,10 @@ public class DonacionesDTO {
     private Boolean editar;
     @JsonProperty
     private Boolean eliminar;
+    @JsonProperty
+    private Boolean bajaPublicacion;
+    @JsonProperty
+    private Boolean subirPublicacion;
 
     public static DonacionesDTO fromEntity(Donacion donacion) {
         return DonacionesDTO.builder()
@@ -32,6 +36,8 @@ public class DonacionesDTO {
                 .estado(donacion.getEstado())
                 .editar(donacion.getEditar())
                 .eliminar(donacion.getEliminar())
+                .bajaPublicacion(donacion.getBajaPublicacion())
+                .subirPublicacion(donacion.getSubirPublicacion())
                 .build();
     }
 }

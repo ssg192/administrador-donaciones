@@ -23,4 +23,6 @@ private Integer idPersona;
     //acciones
     private Boolean editar;
     private Boolean eliminar;
+    private Boolean bajaPublicacion;
+    private Boolean subirPublicacion;
 }
