@@ -85,9 +85,9 @@ public class DonacionController {
     }
 
     @POST
-    @Path("{correoElectronico}/{password}/acceso")
-    public PersonaAcessoDTO getCredencialesByCorreoAndPassword(@PathParam("correoElectronico") String correoElectronico, @PathParam("password") String password) {
-        return donacionService.getAccessPersonaByCorreoElectronicoAndPassword(correoElectronico,password).map(PersonaAcessoDTO::fromEntity).getOrElseThrow(ErrorCode::toBusinessException);
+    @Path("acceso")
+    public PersonaAcessoDTO getCredencialesByCorreoAndPassword(@Valid AccesoDTO accesoDTO ) {
+        return donacionService.getAccessPersonaByCorreoElectronicoAndPassword(accesoDTO.getCorreoElectronico(), accesoDTO.getPassword()).map(PersonaAcessoDTO::fromEntity).getOrElseThrow(ErrorCode::toBusinessException);
     }
 
     @GET
