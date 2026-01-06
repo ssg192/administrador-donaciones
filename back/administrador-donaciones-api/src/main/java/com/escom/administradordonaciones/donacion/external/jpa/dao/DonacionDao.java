@@ -301,12 +301,14 @@ public class DonacionDao implements DonacionRepository {
     @Override
     public boolean existDonacionInEstadoInactivoById(Integer idDonacion) {
         return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_INACTIVA)
+                .setParameter(PARAM_ID_DONACION,idDonacion)
                 .getSingleResult();
     }
 
     @Override
     public boolean existDonacionInEstadoActivaById(Integer idDonacion) {
         return (boolean) entityManagerReading.createNativeQuery(QUERY_FIND_EXISTS_DONACION_ACTIVA)
+                .setParameter(PARAM_ID_DONACION,idDonacion)
                 .getSingleResult();
     }
 }
