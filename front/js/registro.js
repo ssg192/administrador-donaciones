@@ -1,23 +1,25 @@
-const API_URL = 'http://localhost:8080'; // Ajusta según tu backend
+const API_URL = 'http://localhost:8080';
 
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    // 1. Obtener valores
-    const orgName = document.getElementById('orgName').value;
-    const address = document.getElementById('address').value;
-    const email = document.getElementById('email').value;
+    // 1. Obtener valores separados
+    const nombre = document.getElementById('nombre').value;
+    const primerApellido = document.getElementById('primerApellido').value;
+    const segundoApellido = document.getElementById('segundoApellido').value;
+    
+    const correoElectronico = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     
     const feedbackDiv = document.getElementById('feedbackMessage');
     const btnRegister = document.getElementById('btnRegister');
 
-    // Limpiar estilos previos del mensaje
+    // Resetear mensajes
     feedbackDiv.style.display = 'none';
-    feedbackDiv.className = 'error-message'; // Resetear clase base
+    feedbackDiv.className = 'error-message';
 
-    // 2. Validación simple en Frontend
+    // 2. Validaciones
     if (password !== confirmPassword) {
         feedbackDiv.innerText = "Las contraseñas no coinciden.";
         feedbackDiv.style.display = 'block';
@@ -30,42 +32,38 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         return;
     }
 
-    // Deshabilitar botón
     btnRegister.disabled = true;
     btnRegister.innerText = 'Registrando...';
 
     try {
-        // 3. Petición al Backend
-        // Estructura el JSON según lo que espere tu entidad en Java/Quarkus
-        const response = await fetch(`${API_URL}/auth/register`, {
+        // 3. Enviar JSON con la nueva estructura
+        // Asegúrate de que tu DTO en Quarkus tenga estos mismos nombres de campos
+        const response = await fetch(`http://localhost:8080/donacion/persona`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                nombre: orgName,
-                direccion: address,
-                email: email,
+                nombre: nombre,
+                primerApellido: primerApellido,
+                segundoApellido: segundoApellido,
+                correoElectronico: correoElectronico,
                 password: password
-                // Nota: No enviamos confirmPassword al backend
             })
         });
 
         if (response.ok) {
-            // Registro exitoso
-            feedbackDiv.className = 'success-message'; // Cambiar a estilo verde
-            feedbackDiv.innerText = '¡Registro exitoso! Redirigiendo al login...';
+            feedbackDiv.className = 'success-message';
+            feedbackDiv.innerText = '¡Cuenta creada! Redirigiendo...';
             feedbackDiv.style.display = 'block';
 
-            // Esperar 2 segundos y redirigir al login
             setTimeout(() => {
                 window.location.href = 'login.html';
             }, 2000);
 
         } else {
-            // Error del servidor (ej. "El correo ya existe")
             const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || 'Error al registrar la cuenta.');
+            throw new Error(errorData.message || 'Error al crear la cuenta.');
         }
 
     } catch (error) {
