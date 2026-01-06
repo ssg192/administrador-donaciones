@@ -18,7 +18,11 @@ const iconoDefault = L.icon({
 });
 //TODO : Sacar rol de la sesión 
 // URL de tu API (Ajusta el endpoint según tu controlador en Quarkus)
-const API_URL = 'http://localhost:8080/donacion/donaciones?idRol=1'; 
+const rol = localStorage.getItem('idRol');
+
+
+const API_URL = rol ? `http://localhost:8080/donacion/donaciones?idRol=${rol}`: `http://localhost:8080/donacion/donaciones`;
+
 
 // 3. Función asíncrona para obtener datos (GET)
 async function cargarPuntos() {
