@@ -68,7 +68,7 @@ CREATE TABLE cr01_donaciones (
     fk_tipo_donacion INTEGER NOT NULL,
     fk_id_persona INTEGER NOT NULL,
     fk_id_estado INTEGER NOT NULL,
-    tx_descripcion VARCHAR(500) NOT NULL,
+    tx_descripcion VARCHAR(50000) NOT NULL,
     latitud DECIMAL(10,7) NOT NULL,
     longitud DECIMAL(10,7) NOT NULL,
     profundidad DECIMAL(10,2) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE cr05_incidencia (
     id_incidencia INTEGER NOT NULL
         DEFAULT nextval('cr05_incidencia_id_incidencia_seq'),
     fk_id_tipo_incidencia INTEGER NOT NULL,
-    tx_comentario VARCHAR(500) NOT NULL,
+    tx_comentario VARCHAR(50000) NOT NULL,
     fk_id_estado INTEGER NOT NULL,
     CONSTRAINT pk_cr05_incidencia PRIMARY KEY (id_incidencia)
 );

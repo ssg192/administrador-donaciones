@@ -96,7 +96,7 @@ function gestionarAccion(id, accion, esPermitido) {
 function eliminarDonacion(id) {
     if (!confirm("¿Estás seguro de eliminar permanentemente esta donación?")) return;
 
-    fetch(`${BASE_URL_DONACION}/${id}/eliminar`, {
+    fetch(`${BASE_URL_DONACION}/donaciones/${id}/eliminar`, {
         method: 'DELETE'
     })
     .then(res => {
