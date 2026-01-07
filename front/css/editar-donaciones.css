@@ -131,3 +131,9 @@ button:hover {
     text-align: center;
     border: 1px solid #fed7d7;
 }
+
+body {
+    margin: 0;
+    padding-top: 60px; /* Debe ser igual a la altura de tu menú */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

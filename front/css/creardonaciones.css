@@ -177,3 +177,53 @@ button#btnSubmit:disabled {
         font-size: 1.5rem;
     }
 }
+
+/* ===== MODAL CONFIRM ===== */
+.modal-hidden {
+    display: none;
+}
+
+.modal-visible {
+    display: flex;
+}
+
+#modal-confirm {
+    position: fixed;
+    inset: 0; /* top:0; bottom:0; left:0; right:0 */
+    background: rgba(0,0,0,0.45);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-ok {
+    background: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #bdc3c7;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}

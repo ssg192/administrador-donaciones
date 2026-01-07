@@ -1,18 +1,26 @@
+/* ===== BODY Y BASE ===== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    padding-top: 60px; /* Igual a la altura de tu menú fijo */
     background-color: #f4f4f9;
 }
 
-/* Navbar styles */
+/* ===== MENÚ FIJO ===== */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
     background-color: #333;
     color: white;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .logo {
@@ -42,24 +50,35 @@ body {
     border-radius: 4px;
 }
 
-/* Contenedor principal */
+/* ===== CONTENEDOR PRINCIPAL ===== */
 .main-content {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h1 {
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-/* IMPORTANTE: El mapa necesita altura definida */
-#map {
-    height: 600px; /* Ajusta esto según lo que necesites */
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border: 2px solid #ddd;
-    z-index: 1; /* Para asegurar que el mapa quede por debajo del menú si este es flotante */
+    max-width: 1400px; /* Ocupa casi toda la pantalla grande */
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+}
+
+/* ===== MAPA RESPONSIVO ===== */
+#map {
+    height: calc(100vh - 60px); /* Alto de toda la ventana menos menú */
+    width: 100%;
+    border-radius: 0; /* Sin borde redondeado para que ocupe todo */
+    box-shadow: none;
+    border: none;
+}
+
+/* ===== MEDIA QUERY PARA MÓVILES ===== */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    #map {
+        height: calc(100vh - 60px); /* Igual altura en móviles */
+    }
 }

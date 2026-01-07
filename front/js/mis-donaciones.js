@@ -5,23 +5,67 @@ if (!idPersona) {
 }
 
 const API_URL = `http://localhost:8080/donacion/${idPersona}/donaciones`;
-const BASE_URL_DONACION = 'http://localhost:8080/donacion'; // Base para las acciones individuales
+const BASE_URL_DONACION = 'http://localhost:8080/donacion'; // Base para acciones individuales
 
 // Carga inicial de datos
 cargarDonaciones();
 
+// ===== TOAST =====
+function showToast(message, type = 'info', duration = 4000) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    const icons = { success: "✔ ", error: "❌ ", warning: "⚠ ", info: "ℹ " };
+    toast.textContent = (icons[type] || "") + message;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transition = 'opacity 0.5s';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, duration);
+}
+
+// ===== MODAL =====
+function showConfirm(title, message) {
+    return new Promise(resolve => {
+        const modal = document.getElementById('modal-confirm');
+        const okBtn = document.getElementById('modal-ok');
+        const cancelBtn = document.getElementById('modal-cancel');
+
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-message').textContent = message;
+
+        modal.classList.remove('modal-hidden');
+        modal.classList.add('modal-visible');
+
+        // Limpiar eventos previos
+        okBtn.onclick = null;
+        cancelBtn.onclick = null;
+
+        const cleanUp = () => {
+            okBtn.onclick = null;
+            cancelBtn.onclick = null;
+            modal.classList.remove('modal-visible');
+            modal.classList.add('modal-hidden');
+        };
+
+        okBtn.onclick = () => { cleanUp(); resolve(true); };
+        cancelBtn.onclick = () => { cleanUp(); resolve(false); };
+    });
+}
+
+// ===== CARGAR DONACIONES =====
 function cargarDonaciones() {
     fetch(API_URL)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener donaciones');
-            }
+            if (!response.ok) throw new Error('Error al obtener donaciones');
             return response.json();
         })
         .then(donaciones => pintarDonaciones(donaciones))
         .catch(error => {
             console.error(error);
-            alert('No se pudieron cargar las donaciones');
+            showToast('No se pudieron cargar las donaciones', 'error');
         });
 }
 
@@ -32,13 +76,11 @@ function pintarDonaciones(donaciones) {
     donaciones.forEach(d => {
         const tr = document.createElement('tr');
 
-        // 1. Clases CSS para estado visual
         const editarClass = d.editar ? 'icono editar' : 'icono editar disabled';
         const eliminarClass = d.eliminar ? 'icono eliminar' : 'icono eliminar disabled';
         const subirClass = d.subirPublicacion ? 'icono subir' : 'icono subir disabled';
         const bajaClass = d.bajaPublicacion ? 'icono baja' : 'icono baja disabled';
 
-        // 2. Renderizado HTML
         tr.innerHTML = `
             <td>${d.tipoDonacion}</td>
             <td>${d.descripcion}</td>
@@ -68,86 +110,68 @@ function pintarDonaciones(donaciones) {
     });
 }
 
-// --- FUNCIONES DE ACCIÓN ---
-
+// ===== FUNCIONES DE ACCIÓN =====
 function irAEditar(id, esPermitido) {
     if (!esPermitido) return;
     window.location.href = `editar-donaciones.html?id=${id}`;
 }
 
-// Función principal que distribuye la lógica según la acción
 function gestionarAccion(id, accion, esPermitido) {
-    if (!esPermitido) return; // Si el botón está deshabilitado visualmente, no hacemos nada.
-
-    console.log(`Ejecutando ${accion} en donación ${id}`);
+    if (!esPermitido) return;
 
     if (accion === 'eliminar') {
-        eliminarDonacion(id);
-    } 
-    else if (accion === 'subir') {
-        activarDonacion(id);
-    } 
-    else if (accion === 'baja') {
-        desactivarDonacion(id);
+        showConfirm("Eliminar donación", "¿Estás seguro de eliminar permanentemente esta donación?")
+            .then(ok => { if (ok) eliminarDonacion(id); });
+    } else if (accion === 'subir') {
+        showConfirm("Activar publicación", "¿Deseas activar esta publicación para que sea visible en el mapa?")
+            .then(ok => { if (ok) activarDonacion(id); });
+    } else if (accion === 'baja') {
+        showConfirm("Desactivar publicación", "¿Deseas ocultar esta publicación del mapa (volver inactiva)?")
+            .then(ok => { if (ok) desactivarDonacion(id); });
     }
 }
 
-// 1. Lógica para ELIMINAR (DELETE)
+// ===== ELIMINAR =====
 function eliminarDonacion(id) {
-    if (!confirm("¿Estás seguro de eliminar permanentemente esta donación?")) return;
-
-    fetch(`${BASE_URL_DONACION}/donaciones/${id}/eliminar`, {
-        method: 'DELETE'
-    })
-    .then(res => {
-        if (res.ok) {
-            alert("Donación eliminada.");
-            cargarDonaciones();
-        } else {
-            alert("Error al eliminar.");
-        }
-    })
-    .catch(err => console.error(err));
+    fetch(`${BASE_URL_DONACION}/donaciones/${id}/eliminar`, { method: 'DELETE' })
+        .then(res => {
+            if (res.ok) {
+                showToast("Donación eliminada.", "success");
+                cargarDonaciones();
+            } else showToast("Error al eliminar.", "error");
+        })
+        .catch(err => {
+            console.error(err);
+            showToast("Error de conexión.", "error");
+        });
 }
 
-// 2. Lógica para VOLVER ACTIVA (PATCH) - Subir Publicación
+// ===== ACTIVAR =====
 function activarDonacion(id) {
-    if (!confirm("¿Deseas activar esta publicación para que sea visible en el mapa?")) return;
-
-    fetch(`${BASE_URL_DONACION}/${id}/volver-activa`, {
-        method: 'PATCH'
-    })
-    .then(res => {
-        if (res.ok) {
-            alert("¡Publicación activada con éxito!");
-            cargarDonaciones(); // Recargar tabla para ver el nuevo estado
-        } else {
-            alert("No se pudo activar la publicación.");
-        }
-    })
-    .catch(err => {
-        console.error("Error al activar:", err);
-        alert("Error de conexión.");
-    });
+    fetch(`${BASE_URL_DONACION}/${id}/volver-activa`, { method: 'PATCH' })
+        .then(res => {
+            if (res.ok) {
+                showToast("¡Publicación activada con éxito!", "success");
+                cargarDonaciones();
+            } else showToast("No se pudo activar la publicación.", "error");
+        })
+        .catch(err => {
+            console.error(err);
+            showToast("Error de conexión.", "error");
+        });
 }
 
-// 3. Lógica para VOLVER INACTIVA (PATCH) - Baja Publicación
+// ===== DESACTIVAR =====
 function desactivarDonacion(id) {
-    if (!confirm("¿Deseas ocultar esta publicación del mapa (volver inactiva)?")) return;
-
-    fetch(`${BASE_URL_DONACION}/${id}/volver-inactiva`, {
-        method: 'PATCH'
-    })
-    .then(res => {
-        if (res.ok) {
-            alert("Publicación desactivada.");
-            cargarDonaciones(); // Recargar tabla para ver el nuevo estado
-        } else {
-            alert("No se pudo desactivar la publicación.");
-        }
-    })
-    .catch(err => {
-        console.error("Error al desactivar:", err);
-        alert("Error de conexión.");
-    });
+    fetch(`${BASE_URL_DONACION}/${id}/volver-inactiva`, { method: 'PATCH' })
+        .then(res => {
+            if (res.ok) {
+                showToast("Publicación desactivada.", "success");
+                cargarDonaciones();
+            } else showToast("No se pudo desactivar la publicación.", "error");
+        })
+        .catch(err => {
+            console.error(err);
+            showToast("Error de conexión.", "error");
+        });
 }

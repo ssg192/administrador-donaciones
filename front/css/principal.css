@@ -1,138 +1,197 @@
-/* --- Configuración Base (Consistente con tus otras vistas) --- */
+/* ===== Variables de Diseño ===== */
+:root {
+    --primary: #2d5aed;
+    --primary-dark: #1e3bb3;
+    --secondary: #00d2ff;
+    --text-main: #2c3e50;
+    --text-light: #5a6c7d;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9; /* El mismo gris suave */
     margin: 0;
-    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.7;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center; /* Centrado Horizontal */
-    align-items: center;     /* Centrado Vertical */
-    min-height: 100vh;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* --- Tarjeta Principal --- */
-.landing-card {
-    background-color: white;
-    width: 50%;
-    max-width: 500px; /* Tamaño controlado */
-    padding: 2.5rem;
-    border-radius: 20px; /* Bordes más redondeados para bienvenida */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* Sombra más elegante */
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.nav-btn-login {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+    border: 2px solid var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.nav-btn-login:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    padding: 100px 20px;
+    background: radial-gradient(circle at top right, #e0f2fe, transparent);
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-/* --- Imagen y Títulos --- */
+.hero-image-container {
+    background: white;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 30px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forma orgánica moderna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
 .hero-image {
-    width: 50%;
-    height: 200px;
-    object-fit: cover; /* Recorta la imagen para que llene el espacio */
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 80px;
+    height: auto;
 }
 
-.main-title {
-    color: #2c3e50;
-    font-size: 2.2rem;
-    margin: 0 0 10px 0;
-    font-weight: 800; /* Letra gruesa para impacto */
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
     letter-spacing: -1px;
+    margin-bottom: 1rem;
 }
 
 .slogan {
-    color: #7f8c8d;
-    font-size: 1.1rem;
-    margin-bottom: 35px;
-    line-height: 1.5;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto 40px;
 }
 
-/* --- Botones --- */
-.action-buttons {
+/* ===== Botones ===== */
+.hero-buttons {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 15px;
 }
 
-/* Estilo base del botón grande */
 .btn {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 15px 20px;
+    padding: 14px 28px;
     border-radius: 12px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Contenido dentro del botón */
-.icon-wrapper {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    width: 40px;
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(45, 90, 237, 0.3);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-main);
+    border: 1px solid #e2e8f0;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ===== Tarjetas y Secciones ===== */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.badge {
+    background: #e0f2fe;
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.info-section {
+    padding: 80px 0;
     text-align: center;
 }
 
-.text-wrapper {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
 }
 
-.btn-title {
-    font-weight: bold;
-    font-size: 1.1rem;
+.step-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    border: 1px solid rgba(0,0,0,0.02);
 }
 
-.btn-subtitle {
-    font-size: 0.85rem;
-    opacity: 0.8;
+.step-card:hover {
+    border-color: var(--primary);
 }
 
-/* --- Variantes de Color --- */
-
-/* Botón Explorar (Principal - Verde/Azul Turquesa o el color de la marca) */
-.btn-explore {
-    background-color: #007bff; /* Azul consistente */
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+.step-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
 }
 
-.btn-explore:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* Pequeña elevación */
+/* ===== Footer ===== */
+.main-footer {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f1f5f9;
+    color: var(--text-light);
 }
 
-/* Botón Login (Secundario - Borde o Gris suave) */
-.btn-login {
-    background-color: #f8f9fa;
-    color: #333;
-    border: 2px solid #e0e0e0;
-}
-
-.btn-login:hover {
-    background-color: #e2e6ea;
-    border-color: #ccc;
-    transform: translateY(-2px);
-}
-
-/* --- Footer --- */
-.footer-note {
-    margin-top: 30px;
-    font-size: 0.8rem;
-    color: #aaa;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-}
-
-/* --- Responsive --- */
-@media (max-width: 480px) {
-    .landing-card {
-        padding: 1.5rem;
-        width: 95%;
-    }
-    
-    .main-title {
-        font-size: 1.8rem;
-    }
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .hero-buttons { flex-direction: column; }
+    .nav-links { display: none; }
 }

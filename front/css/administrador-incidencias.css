@@ -139,3 +139,101 @@ button:hover {
     font-style: italic;
     color: #999;
 }
+/* ===== TOAST ===== */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #333;
+    color: #fff;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    min-width: 260px;
+    box-shadow: 0 5px 12px rgba(0,0,0,.2);
+    animation: slideIn .3s ease;
+}
+
+.toast.success { background: #2ecc71; }
+.toast.error   { background: #e74c3c; }
+.toast.warning { background: #f39c12; }
+.toast.info    { background: #3498db; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== MODAL CONFIRM ===== */
+.modal-hidden {
+    display: none;
+}
+
+/* Contenedor del modal */
+#modal-confirm {
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;               /* Para centrar el contenido */
+    align-items: center;         /* Centrar vertical */
+    justify-content: center;     /* Centrar horizontal */
+    z-index: 9998;
+}
+
+/* Mostrar modal solo cuando se llame JS */
+.modal-visible {
+    display: flex;
+}
+
+.modal-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-20px);
+    animation: modalFadeIn 0.25s forwards;
+}
+
+@keyframes modalFadeIn {
+    to { transform: translateY(0); }
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-ok {
+    background: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #bdc3c7;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Para que el modal no aparezca hasta que JS agregue la clase modal-visible */
+#modal-confirm.modal-hidden {
+    display: none;
+}
+
+body {
+    margin: 0;
+    padding-top: 60px; /* Debe ser igual a la altura de tu menú */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

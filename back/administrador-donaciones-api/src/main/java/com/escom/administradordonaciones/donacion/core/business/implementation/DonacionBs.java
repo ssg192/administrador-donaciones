@@ -29,10 +29,18 @@ public class DonacionBs implements DonacionService {
     }
 
     @Override
-    public List<Donacion> listDonacionesByIdPersona(Integer idPersona) {
-      var donaciones = donacionRepository.findDonacionesByIdPersona(idPersona);
-        return asignacionEstadoDonacion(donaciones);
+public List<Donacion> listDonacionesByIdPersona(Integer idPersona) {
+    var searchPersona = donacionRepository.findPersonaById(idPersona);
+    var searchRol = donacionRepository.findInformacionUserByCorreo(searchPersona.get().getCorreo());
+    List<Donacion> donaciones;
+    if (RolesEnum.ADMIN.getId().equals(searchRol.get().getIdRol())) {
+        donaciones = donacionRepository.findAllDonaciones();
+    } else {
+        donaciones = donacionRepository.findDonacionesByIdPersona(idPersona);
     }
+    return asignacionEstadoDonacion(donaciones);
+}
+
 
     @Override
     public List<Donacion> listAllDonaciones(Integer idRol) {

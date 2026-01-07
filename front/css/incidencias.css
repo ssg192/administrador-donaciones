@@ -1,14 +1,14 @@
-/* --- Configuración base para centrado (Flexbox) --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     margin: 0;
-    padding: 0;
+    padding-top: 80px; /* Igual a la altura de tu menú */
     display: flex;
     flex-direction: column; /* Menú arriba, contenido abajo */
     align-items: center;    /* Centrado horizontal */
     min-height: 100vh;
 }
+
 
 #menu {
     width: 100%;
@@ -127,3 +127,4 @@ button#btnSubmit:disabled {
     color: #276749;
     border: 1px solid #9ae6b4;
 }
+

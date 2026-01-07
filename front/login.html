@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso - Plataforma de Donaciones</title>
+    <title>Acceso - Granito de Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+    <a href="principal.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+
     <div class="login-container">
         <div class="login-header">
+            <div class="login-logo-mini">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
             <h2>Bienvenido</h2>
             <p>Acceso para Organizaciones y Centros de Acopio</p>
         </div>
@@ -16,25 +24,34 @@
         <form id="loginForm">
             <div class="form-group">
                 <label for="correoElectronico">Correo Electrónico</label>
-                <input type="correoElectronico" id="correoElectronico" name="correoElectronico" required placeholder="ejemplo@organizacion.org">
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="correoElectronico" name="correoElectronico" required placeholder="ejemplo@organizacion.org">
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required placeholder="********">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" name="password" required placeholder="********">
+                </div>
             </div>
 
             <div id="errorMessage" class="error-message" style="display: none;"></div>
 
-            <button type="submit" id="btnSubmit">Ingresar</button>
+            <button type="submit" id="btnSubmit" class="btn-login-submit">
+                <span>Ingresar</span>
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
         </form>
 
         <div class="login-footer">
-            <p>¿Aún no te registras? <a href="registro.html">Crear cuenta</a></p>
-            <p>¿Quieres donar?<a href="mapa.html">da click aqui para ver el mapa </a></p>
+            <p>¿Aún no te registras? <a href="registro.html" class="link-alt">Crear cuenta</a></p>
+            <div class="footer-divider">o</div>
+            <p>¿Quieres donar? <a href="mapa.html" class="link-map">Ver mapa de ayuda</a></p>
         </div>
     </div>
-  
 
 <script type="module" src="js/login.js"></script>
 
