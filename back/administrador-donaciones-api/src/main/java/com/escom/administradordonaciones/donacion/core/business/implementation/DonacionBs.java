@@ -175,6 +175,7 @@ public List<Donacion> listDonacionesByIdPersona(Integer idPersona) {
     @Override
     public Either<ErrorCodeEnum, Persona> getAccessPersonaByCorreoElectronicoAndPassword(String correoElectronico, String password) {
         var searchPersona = donacionRepository.findInformacionUserByCorreo(correoElectronico);
+
         if(searchPersona.isEmpty()) {
             return Either.left(ErrorCodeEnum.CE_NOT_FOUND);
         }

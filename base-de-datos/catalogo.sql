@@ -45,4 +45,7 @@ VALUES(1,'Administrador'),
 (2,'Necesitador');
 
 insert into cr02_persona (id_persona, tx_nombre, tx_primer_apellido, tx_segundo_apellido, tx_correo, password)
-values (1, 'Admin', 'Sistema', 'Principal', 'admin@gmail.com', '$2a$10$y1Bv7Vh1Hqhwc2bLvhG5Heu3tUEx9NH3I6Xc1kNz4kdr4fRns8G3e');
+values (1, 'Admin', 'Sistema', 'Principal', 'admin@gmail.com', '$2a$12$R6cndsS4sctY83hymogQ7uy1LGxyIH2wXxBS.YYDwWeSNu.rVd4uO');
+
+insert into cr04_persona_rol (fk_id_persona, fk_id_rol)
+values (1, 1);
