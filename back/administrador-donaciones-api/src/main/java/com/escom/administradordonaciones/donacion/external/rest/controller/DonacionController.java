@@ -113,7 +113,7 @@ public class DonacionController {
     }
 
     @DELETE
-    @Path("{idDonacion}/eliminar")
+    @Path("donaciones/{idDonacion}/eliminar")
     public Boolean deleteDonacion(@PathParam("idDonacion")Integer idDonacion) {
         return donacionService.deleteDonacion(idDonacion).getOrElseThrow(ErrorCode::toBusinessException);
     }
