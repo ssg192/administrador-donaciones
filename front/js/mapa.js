@@ -21,7 +21,7 @@ const iconoDefault = L.icon({
 const rol = localStorage.getItem('idRol');
 
 
-const API_URL = rol ? `http://localhost:8080/donacion/donaciones?idRol=${rol}`: `http://localhost:8080/donacion/donaciones`;
+const API_URL = rol ? `https://administrador-donaciones-production.up.railway.app/donacion/donaciones?idRol=${rol}`: `https://administrador-donaciones-production.up.railway.app/donacion/donaciones`;
 
 
 // 3. Función asíncrona para obtener datos (GET)

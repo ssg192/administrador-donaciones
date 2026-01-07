@@ -1,6 +1,6 @@
 // URLs de la API
-const URL_CREAR = 'http://localhost:8080/donacion/incidencia';
-const URL_CATALOGO = 'http://localhost:8080/donacion/catalogo/tipo-incidencia';
+const URL_CREAR = 'https://administrador-donaciones-production.up.railway.app/donacion/incidencia';
+const URL_CATALOGO = 'https://administrador-donaciones-production.up.railway.app/donacion/catalogo/tipo-incidencia';
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarCatalogoIncidencias();

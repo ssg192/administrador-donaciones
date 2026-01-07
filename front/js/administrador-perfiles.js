@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:8080/donacion/personal';
-const BASE_URL_PERSONA = 'http://localhost:8080/donacion/persona'; // Para eliminar usuarios
+const API_URL = 'https://administrador-donaciones-production.up.railway.app/donacion/personal';
+const BASE_URL_PERSONA = 'https://administrador-donaciones-production.up.railway.app/donacion/persona'; // Para eliminar usuarios
 
 // Ejecutar al cargar la página
 document.addEventListener('DOMContentLoaded', () => {

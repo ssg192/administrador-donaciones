@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://administrador-donaciones-production.up.railway.app';
 
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -38,7 +38,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     try {
         // 3. Enviar JSON con la nueva estructura
         // Asegúrate de que tu DTO en Quarkus tenga estos mismos nombres de campos
-        const response = await fetch(`http://localhost:8080/donacion/persona`, {
+        const response = await fetch(`https://administrador-donaciones-production.up.railway.app/donacion/persona`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

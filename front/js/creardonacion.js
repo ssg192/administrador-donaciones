@@ -1,6 +1,6 @@
 // URLs de la API
-const URL_CREAR = 'http://localhost:8080/donacion';
-const URL_CATALOGO = 'http://localhost:8080/donacion/catalogo/tipo-donacion';
+const URL_CREAR = 'https://administrador-donaciones-production.up.railway.app/donacion';
+const URL_CATALOGO = 'https://administrador-donaciones-production.up.railway.app/donacion/catalogo/tipo-donacion';
 
 // Variables globales para el mapa
 let map, marker;

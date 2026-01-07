@@ -1,6 +1,6 @@
 // Obtener ID (asegúrate de guardar esto en login)
 const idPersona = localStorage.getItem('idPersona');
-const URL_BASE = 'http://localhost:8080/donacion/persona';
+const URL_BASE = 'https://administrador-donaciones-production.up.railway.app/donacion/persona';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Protección básica de ruta

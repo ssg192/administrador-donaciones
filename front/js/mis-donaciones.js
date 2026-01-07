@@ -4,8 +4,8 @@ if (!idPersona) {
     window.location.href = 'login.html';
 }
 
-const API_URL = `http://localhost:8080/donacion/${idPersona}/donaciones`;
-const BASE_URL_DONACION = 'http://localhost:8080/donacion'; // Base para acciones individuales
+const API_URL = `https://administrador-donaciones-production.up.railway.app/donacion/${idPersona}/donaciones`;
+const BASE_URL_DONACION = 'https://administrador-donaciones-production.up.railway.app/donacion'; // Base para acciones individuales
 
 // Carga inicial de datos
 cargarDonaciones();

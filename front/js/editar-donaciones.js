@@ -1,6 +1,6 @@
 // URLs Base
-const URL_BASE_DONACION = 'http://localhost:8080/donacion';
-const URL_CATALOGO = 'http://localhost:8080/donacion/catalogo/tipo-donacion';
+const URL_BASE_DONACION = 'https://administrador-donaciones-production.up.railway.app/donacion';
+const URL_CATALOGO = 'https://administrador-donaciones-production.up.railway.app/donacion/catalogo/tipo-donacion';
 
 // Variables globales mapa
 let map, marker;

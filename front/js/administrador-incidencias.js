@@ -1,4 +1,4 @@
-const URL_LISTAR = 'http://localhost:8080/donacion/incidencias';
+const URL_LISTAR = 'https://administrador-donaciones-production.up.railway.app/donacion/incidencias';
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarIncidencias();
@@ -133,7 +133,7 @@ async function cargarIncidencias() {
 
 // ===== Marcar incidencia como resuelta =====
 async function marcarResuelta(id) {
-    const urlUpdate = `http://localhost:8080/donacion/${id}/update`;
+    const urlUpdate = `https://administrador-donaciones-production.up.railway.app/donacion/${id}/update`;
     const response = await fetch(urlUpdate, { method: 'PATCH' });
     if (response.ok) {
         showToast("Incidencia marcada como resuelta", "success");
@@ -145,7 +145,7 @@ async function marcarResuelta(id) {
 
 // ===== Eliminar incidencia =====
 async function eliminarIncidencia(id) {
-    const urlEliminar = `http://localhost:8080/donacion/${id}/eliminar`;
+    const urlEliminar = `https://administrador-donaciones-production.up.railway.app/donacion/${id}/eliminar`;
     const response = await fetch(urlEliminar, { method: 'DELETE' });
     if (response.ok) {
         showToast("Incidencia eliminada correctamente", "success");
